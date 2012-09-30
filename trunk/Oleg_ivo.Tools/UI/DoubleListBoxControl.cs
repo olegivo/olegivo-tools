@@ -99,6 +99,12 @@ namespace Oleg_ivo.Tools.UI
             remove { lbRight.SelectedIndexChanged += value; }
         }
 
+        public void InitDisplayMember(string displayMember)
+        {
+            lbLeft.DisplayMember = displayMember;
+            lbRight.DisplayMember = displayMember;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -143,7 +149,7 @@ namespace Oleg_ivo.Tools.UI
         /// </summary>
         public IList SourceRight
         {
-            get { return _right as IList; }
+            get { return _right; }
         }
 
         private void MoveToLeft(bool onlySelected)
