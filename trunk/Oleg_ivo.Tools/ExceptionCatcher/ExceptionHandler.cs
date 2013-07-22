@@ -9,7 +9,7 @@ namespace Oleg_ivo.Tools.ExceptionCatcher
     /// </summary>
     public sealed class ExceptionHandler
     {
-        private readonly EventHandler<ExtendedThreadExceptionEventArgs> _additionalErrorHandler;
+        public EventHandler<ExtendedThreadExceptionEventArgs> AdditionalErrorHandler { get; set; }
 
         /// <summary>
         /// Constructor
@@ -28,7 +28,7 @@ namespace Oleg_ivo.Tools.ExceptionCatcher
         public ExceptionHandler(EventHandler<ExtendedThreadExceptionEventArgs> additionalErrorHandler)
             : this()
         {
-            _additionalErrorHandler = additionalErrorHandler;
+            AdditionalErrorHandler = additionalErrorHandler;
         }
 
         /// <summary>
@@ -42,10 +42,10 @@ namespace Oleg_ivo.Tools.ExceptionCatcher
 
             try
             {
-                if (_additionalErrorHandler != null)
+                if (AdditionalErrorHandler != null)
                 {
                     var eventArgs = new ExtendedThreadExceptionEventArgs(e.Exception);
-                    _additionalErrorHandler(this, eventArgs);
+                    AdditionalErrorHandler(this, eventArgs);
                     showError = eventArgs.ShowError;
                 }
             }
@@ -70,10 +70,10 @@ namespace Oleg_ivo.Tools.ExceptionCatcher
 
             try
             {
-                if (_additionalErrorHandler != null)
+                if (AdditionalErrorHandler != null)
                 {
                     var eventArgs = new ExtendedThreadExceptionEventArgs(exception);
-                    _additionalErrorHandler(this, eventArgs);
+                    AdditionalErrorHandler(this, eventArgs);
                     showError = eventArgs.ShowError;
                 }
             }
