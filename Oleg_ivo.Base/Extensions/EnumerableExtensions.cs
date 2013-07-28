@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Oleg_ivo.Base.Autofac;
 using Oleg_ivo.PrismExtensions.Autofac;
 
 namespace Oleg_ivo.PrismExtensions.Extensions

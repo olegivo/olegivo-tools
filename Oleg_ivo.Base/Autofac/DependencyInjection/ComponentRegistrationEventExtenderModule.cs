@@ -2,7 +2,7 @@ using System;
 using Autofac;
 using Autofac.Core;
 
-namespace Oleg_ivo.PrismExtensions.Autofac.DependencyInjection
+namespace Oleg_ivo.Base.Autofac.DependencyInjection
 {
     public class ComponentRegistrationEventExtenderModule : Module
     {

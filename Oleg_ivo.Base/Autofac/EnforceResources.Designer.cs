@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Oleg_ivo.PrismExtensions.Autofac
+namespace Oleg_ivo.Base.Autofac
 {
     using System;
     

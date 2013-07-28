@@ -1,9 +1,8 @@
 ﻿using System;
 using Autofac;
 using Autofac.Core;
-using Oleg_ivo.PrismExtensions.Autofac;
 
-namespace BI.Base.DependencyInjection
+namespace Oleg_ivo.Base.Autofac
 {
 
     /// <summary>

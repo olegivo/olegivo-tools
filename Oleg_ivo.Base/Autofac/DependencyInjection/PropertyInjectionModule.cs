@@ -1,6 +1,6 @@
 using Autofac;
 
-namespace Oleg_ivo.PrismExtensions.Autofac.DependencyInjection
+namespace Oleg_ivo.Base.Autofac.DependencyInjection
 {
 
     /// <summary>

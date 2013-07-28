@@ -27,7 +27,7 @@ using System;
 using System.Globalization;
 using System.Reflection;
 
-namespace Oleg_ivo.PrismExtensions.Autofac
+namespace Oleg_ivo.Base.Autofac
 {
     /// <summary>
     /// Helper methods used throughout the codebase.

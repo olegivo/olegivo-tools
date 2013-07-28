@@ -1,4 +1,5 @@
 ﻿using System;
+using Oleg_ivo.Base.Autofac;
 using Oleg_ivo.PrismExtensions.Autofac;
 
 namespace Oleg_ivo.PrismExtensions.NamedObject

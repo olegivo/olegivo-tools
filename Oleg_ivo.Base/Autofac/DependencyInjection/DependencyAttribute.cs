@@ -1,7 +1,7 @@
 using System;
 using Autofac.Core;
 
-namespace Oleg_ivo.PrismExtensions.Autofac.DependencyInjection
+namespace Oleg_ivo.Base.Autofac.DependencyInjection
 {
 
     /// <summary>
