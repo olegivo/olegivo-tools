@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Oleg_ivo.PrismExtensions.Extensions
+namespace Oleg_ivo.Base.Extensions
 {
 
     /// <summary>

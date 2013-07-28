@@ -1,4 +1,4 @@
-﻿namespace Oleg_ivo.PrismExtensions.NamedObject
+﻿namespace Oleg_ivo.Base.NamedObject
 {
     public enum NameForm
     {

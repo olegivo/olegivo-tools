@@ -4,8 +4,8 @@ using System.Linq;
 using System.Reflection;
 using Autofac;
 using Autofac.Core;
-using Oleg_ivo.PrismExtensions.Extensions;
-using Oleg_ivo.PrismExtensions.NamedObject;
+using Oleg_ivo.Base.Extensions;
+using Oleg_ivo.Base.NamedObject;
 
 namespace Oleg_ivo.Base.Autofac.DependencyInjection
 {
