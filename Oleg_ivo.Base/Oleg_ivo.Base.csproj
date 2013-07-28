@@ -49,7 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Args">
-      <HintPath>..\packages\Args.1.1.1\lib\Net40\Args.dll</HintPath>
+      <HintPath>..\..\..\packages\Args.1.1.1\lib\Net40\Args.dll</HintPath>
     </Reference>
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.0.2\lib\net40\Autofac.dll</HintPath>
@@ -85,9 +85,6 @@
     </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\packages\NSubstitute.1.6.1.0\lib\NET40\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="Oleg_ivo.Tools">
-      <HintPath>..\Referenced\Oleg_ivo.Tools.dll</HintPath>
     </Reference>
     <Reference Include="Prism.AutofacExtension">
       <HintPath>..\packages\Prism.AutofacExtension.1.0.40.0\lib\net40\Prism.AutofacExtension.dll</HintPath>
@@ -129,8 +126,6 @@
     <Compile Include="NamedObject\NamedObjectExtensions.cs" />
     <Compile Include="NamedObject\NameForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unity\WinFormsBootstrapper.cs" />
-    <Compile Include="Unity\SimpleUnityBootstrapper.cs" />
     <Compile Include="Utils\CommandLineHelper.cs" />
     <Compile Include="Autofac\Modules\CommandLineHelperAutofacModule.cs" />
   </ItemGroup>
@@ -139,6 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Autofac\EnforceResources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Oleg_ivo.Tools\Oleg_ivo.Tools.csproj">
+      <Project>{332a1894-922f-49a1-bd6a-e4e981fa2fec}</Project>
+      <Name>Oleg_ivo.Tools</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
