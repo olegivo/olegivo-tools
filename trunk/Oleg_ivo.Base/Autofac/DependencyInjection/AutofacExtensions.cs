@@ -4,9 +4,8 @@ using System.Linq;
 using Autofac;
 using Autofac.Builder;
 using Autofac.Core;
-using BI.Base.DependencyInjection;
 
-namespace Oleg_ivo.PrismExtensions.Autofac.DependencyInjection
+namespace Oleg_ivo.Base.Autofac.DependencyInjection
 {
     public static class AutofacExtensions
     {

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Reflection;
 using Autofac;
 using Autofac.Core;
-using BI.Base.DependencyInjection;
 using Oleg_ivo.PrismExtensions.Extensions;
 using Oleg_ivo.PrismExtensions.NamedObject;
 
-namespace Oleg_ivo.PrismExtensions.Autofac.DependencyInjection
+namespace Oleg_ivo.Base.Autofac.DependencyInjection
 {
     class AttributedPropertyInjector
     {

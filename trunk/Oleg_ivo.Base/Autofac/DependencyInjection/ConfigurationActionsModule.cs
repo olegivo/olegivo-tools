@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using Autofac.Core;
-using BI.Base.DependencyInjection;
 
-namespace Oleg_ivo.PrismExtensions.Autofac.DependencyInjection
+namespace Oleg_ivo.Base.Autofac.DependencyInjection
 {
 
     /// <summary>
