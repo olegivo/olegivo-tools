@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Text;
 using Oleg_ivo.Base.Autofac;
-using Oleg_ivo.PrismExtensions.Autofac;
 
-namespace Oleg_ivo.PrismExtensions.Extensions
+namespace Oleg_ivo.Base.Extensions
 {
     public static class EnumerableExtensions
     {

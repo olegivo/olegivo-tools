@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using System.ComponentModel;
 
-namespace Oleg_ivo.PrismExtensions.Extensions
+namespace Oleg_ivo.Base.Extensions
 {
     public static class ReflectionExtensions
     {

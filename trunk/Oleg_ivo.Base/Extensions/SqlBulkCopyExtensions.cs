@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace Oleg_ivo.PrismExtensions.Extensions
+namespace Oleg_ivo.Base.Extensions
 {
     public static class SqlBulkCopyExtensions
     {

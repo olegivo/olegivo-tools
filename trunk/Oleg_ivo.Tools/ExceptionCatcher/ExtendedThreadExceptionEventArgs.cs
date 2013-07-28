@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Threading;
 
 namespace Oleg_ivo.Tools.ExceptionCatcher
