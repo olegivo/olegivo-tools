@@ -17,13 +17,14 @@ namespace Oleg_ivo.Base.Autofac.Modules
 #pragma warning disable 168
             exceptionHandler = new ExceptionHandler();
 #pragma warning restore 168
-            DbConnectionProvider.Instance.SetupConnectionStringFromConfigurationFile();//TODO: в контекст
         }
 
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
 
+            builder.RegisterInstance(DbConnectionProvider.Instance)
+                .OnActivated(args => args.Instance.SetupConnectionStringFromConfigurationFile());
             builder.RegisterInstance(exceptionHandler);
             builder.RegisterModule<PropertyInjectionModule>();
             builder.RegisterModule<ConfigurationActionsModule>();
