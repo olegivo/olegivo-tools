@@ -13,10 +13,7 @@ namespace Oleg_ivo.Base.Autofac.Modules
 
         public BaseAutofacModule()
         {
-            //Включить обработку исключений
-#pragma warning disable 168
             exceptionHandler = new ExceptionHandler();
-#pragma warning restore 168
         }
 
         protected override void Load(ContainerBuilder builder)
@@ -33,6 +30,9 @@ namespace Oleg_ivo.Base.Autofac.Modules
             // дефолтный контекст для синхронизации
             System.Threading.SynchronizationContext.SetSynchronizationContext(new WindowsFormsSynchronizationContext());
             builder.RegisterInstance(System.Threading.SynchronizationContext.Current);
+
+            //exceptions
+            builder.RegisterInstance(exceptionHandler);
         }
     }
 }
