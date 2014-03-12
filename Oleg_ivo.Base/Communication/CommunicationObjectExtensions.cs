@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
+using NLog;
 
 namespace Oleg_ivo.Base.Communication
 {
@@ -8,6 +9,8 @@ namespace Oleg_ivo.Base.Communication
     /// </summary>
     public static class CommunicationObjectExtensions
     {
+        private static Logger log = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Безопасный вызов и закрытие <see cref="client"/>
         /// </summary>
@@ -41,14 +44,17 @@ namespace Oleg_ivo.Base.Communication
         {
             try
             {
+                log.Trace("Попытка штатного закрытия объекта ICommunicationObject ({0})", client);
                 client.Close();
             }
-            catch (CommunicationException)
+            catch (CommunicationException ex)
             {
+                log.Warn("При попытке закрыть ICommunicationObject ({0}) выброшено исключение {1}. Будет вызван метод Abort", client, ex.Message);
                 client.Abort(); // Don't care about these exceptions. The call has completed anyway.
             }
-            catch (TimeoutException)
+            catch (TimeoutException ex)
             {
+                log.Warn("При попытке закрыть ICommunicationObject ({0}) выброшено исключение {1}. Будет вызван метод Abort", client, ex.Message);
                 client.Abort(); // Don't care about these exceptions. The call has completed anyway.
             }
             catch (Exception)
