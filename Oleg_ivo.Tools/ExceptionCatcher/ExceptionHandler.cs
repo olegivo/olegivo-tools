@@ -1,6 +1,5 @@
 using System;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace Oleg_ivo.Tools.ExceptionCatcher
 {
@@ -11,13 +10,30 @@ namespace Oleg_ivo.Tools.ExceptionCatcher
     {
         public EventHandler<ExtendedThreadExceptionEventArgs> AdditionalErrorHandler { get; set; }
 
+        private enum ApplicationType
+        {
+            WinForms,
+            WPF
+        }
+
+        private ApplicationType AppType;
+
         /// <summary>
         /// Constructor
         /// </summary>
         public ExceptionHandler()
         {
             // Подписываемся на событие генерации исключения в текущем потоке
-            Application.ThreadException += OnApplicationThreadException;
+            if (System.Windows.Application.Current == null)
+            {
+                System.Windows.Forms.Application.ThreadException += OnApplicationThreadException;
+                AppType = ApplicationType.WinForms;
+            }
+            else
+            {
+                System.Windows.Application.Current.DispatcherUnhandledException += OnWPFApplicationDispatcherUnhandledException;
+                AppType = ApplicationType.WPF;
+            }
             AppDomain.CurrentDomain.UnhandledException += OnCurrentDomainUnhandledException;
         }
 
@@ -56,7 +72,34 @@ namespace Oleg_ivo.Tools.ExceptionCatcher
                     System.Diagnostics.Trace.WriteLine(e.Exception.ToString(), "Ошибка");
                     if (!FormException.Execute(e.Exception))
                     {
-                        Application.Exit();
+                        System.Windows.Forms.Application.Exit();
+                    }
+                }
+            }
+
+        }
+
+        private void OnWPFApplicationDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            bool showError = true;
+
+            try
+            {
+                if (AdditionalErrorHandler != null)
+                {
+                    var eventArgs = new ExtendedThreadExceptionEventArgs(e.Exception);
+                    AdditionalErrorHandler(this, eventArgs);
+                    showError = eventArgs.ShowError;
+                }
+            }
+            finally
+            {
+                if (showError)
+                {
+                    System.Diagnostics.Trace.WriteLine(e.Exception.ToString(), "Ошибка");
+                    if (!(e.Handled = FormException.Execute(e.Exception)))
+                    {
+                        System.Windows.Forms.Application.Exit();
                     }
                 }
             }
@@ -81,10 +124,10 @@ namespace Oleg_ivo.Tools.ExceptionCatcher
             {
                 if (showError)
                 {
-                    System.Diagnostics.Trace.WriteLine(exception.ToString(), "Ошибка");
+                    System.Diagnostics.Trace.WriteLine(exception, "Ошибка");
                     if (!FormException.Execute(exception, !e.IsTerminating))
                     {
-                        Application.Exit();
+                        System.Windows.Forms.Application.Exit();
                     }
                 }
             }
