@@ -1,4 +1,5 @@
 using System;
+using System.Security;
 using System.Threading;
 
 namespace Oleg_ivo.Tools.ExceptionCatcher
@@ -21,6 +22,7 @@ namespace Oleg_ivo.Tools.ExceptionCatcher
         /// <summary>
         /// Constructor
         /// </summary>
+        [SecuritySafeCritical]
         public ExceptionHandler()
         {
             // Подписываемся на событие генерации исключения в текущем потоке
