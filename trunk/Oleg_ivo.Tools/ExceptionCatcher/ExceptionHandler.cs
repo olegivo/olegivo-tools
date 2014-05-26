@@ -54,6 +54,7 @@ namespace Oleg_ivo.Tools.ExceptionCatcher
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        [SecuritySafeCritical]
         private void OnApplicationThreadException(object sender, ThreadExceptionEventArgs e)
         {
             bool showError = true;
