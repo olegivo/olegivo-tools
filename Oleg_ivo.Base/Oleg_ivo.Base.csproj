@@ -96,6 +96,7 @@
     <Compile Include="Communication\ErrorBehaviorAttribute.cs" />
     <Compile Include="Communication\ServiceErrorHandler.cs" />
     <Compile Include="Extensions\BaseExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\ComparerEx.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\ReflectionExtensions.cs" />
