@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using NLog;
 
 namespace Oleg_ivo.Base.Communication
@@ -40,12 +41,27 @@ namespace Oleg_ivo.Base.Communication
         /// </summary>
         /// <typeparam name="TService">Тип клиента (должен реализовать <see cref="ICommunicationObject"/>)</typeparam>
         /// <param name="client">Инстанс клиента</param>
-        public static void SafeClose<TService>(this TService client) where TService : ICommunicationObject
+        /// <param name="timeout">Таймаут закрытия (по умолчанию без таймаута)</param>
+        public static void SafeClose<TService>(this TService client, TimeSpan? timeout = null) where TService : ICommunicationObject
         {
             try
             {
                 log.Trace("Попытка штатного закрытия объекта ICommunicationObject ({0})", client);
-                client.Close();
+                if (timeout.HasValue)
+                {
+                    try
+                    {
+                        log.Trace("Таймаут ожидания: {0}", timeout.Value);
+                        Task.Factory.StartNew(client.Close).Wait(timeout.Value);
+                    }
+                    catch (AggregateException ex)
+                    {
+                        throw ex.GetBaseException();
+                    }
+                }
+                else
+                    client.Close();
+
             }
             catch (CommunicationException ex)
             {
