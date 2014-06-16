@@ -240,16 +240,16 @@ namespace Oleg_ivo.Base.Extensions
         ///  бесконечные последовательности.
         /// </para>
         /// </remarks>
-        public static IEnumerable<TSource> Memoize<TSource>(this IEnumerable<TSource> source)
+        public static IEnumerable<TSource> Memorize<TSource>(this IEnumerable<TSource> source)
         {
-            return (source is MemoizedEnumerable<TSource>) ? source : new MemoizedEnumerable<TSource>(source);
+            return (source is MemorizedEnumerable<TSource>) ? source : new MemorizedEnumerable<TSource>(source);
         }
 
 
-        private class MemoizedEnumerable<T> : IEnumerable<T>, IDisposable
+        private class MemorizedEnumerable<T> : IEnumerable<T>, IDisposable
         {
 
-            public MemoizedEnumerable(IEnumerable<T> source)
+            public MemorizedEnumerable(IEnumerable<T> source)
             {
                 this.source = source;
                 buffer = new List<T>();
@@ -266,7 +266,7 @@ namespace Oleg_ivo.Base.Extensions
                 lock (this)
                 {
                     if (isDisposed)
-                        throw new ObjectDisposedException("MemoizedEnumerable");
+                        throw new ObjectDisposedException("MemorizedEnumerable");
 
                     if (sourceEnum == null && source != null)
                         sourceEnum = source.GetEnumerator();
@@ -286,7 +286,7 @@ namespace Oleg_ivo.Base.Extensions
                 lock (this)
                 {
                     if (isDisposed)
-                        throw new ObjectDisposedException("MemoizedEnumerable");
+                        throw new ObjectDisposedException("MemorizedEnumerable");
 
                     if (index < buffer.Count)
                     {
@@ -353,13 +353,13 @@ namespace Oleg_ivo.Base.Extensions
 
             public class Enumerator : IEnumerator<T>
             {
-                public Enumerator(MemoizedEnumerable<T> source)
+                public Enumerator(MemorizedEnumerable<T> source)
                 {
                     this.source = source;
                     Reset();
                 }
 
-                private MemoizedEnumerable<T> source;
+                private MemorizedEnumerable<T> source;
                 private int index;
                 private T m_current;
 
