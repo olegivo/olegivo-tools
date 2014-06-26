@@ -22,7 +22,6 @@ namespace Oleg_ivo.Base.Autofac.Modules
 
             builder.RegisterInstance(DbConnectionProvider.Instance)
                 .OnActivated(args => args.Instance.SetupConnectionStringFromConfigurationFile());
-            builder.RegisterInstance(exceptionHandler);
             builder.RegisterModule<PropertyInjectionModule>();
             builder.RegisterModule<ConfigurationActionsModule>();
             // для совместимости со службами, зависящими от IServiceProvider
