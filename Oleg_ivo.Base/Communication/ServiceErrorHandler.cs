@@ -27,10 +27,10 @@ namespace Oleg_ivo.Base.Communication
 
             if (faultEx == null)
             {
-                log.ErrorException("Error in service is not mapped to expected fault", error);
+                log.Error("Error in service is not mapped to expected fault", error);
                 return;
             }
-            log.DebugException(string.Format("Error mapped to {0}", faultEx.GetType().Name), error);
+            log.Debug(string.Format("Error mapped to {0}", faultEx.GetType().Name), error);
 
             var msgFault = faultEx.CreateMessageFault();
             fault = Message.CreateMessage(version, msgFault, faultEx.Action);
