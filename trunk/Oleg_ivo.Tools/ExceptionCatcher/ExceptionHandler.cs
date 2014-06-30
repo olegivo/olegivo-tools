@@ -93,6 +93,7 @@ namespace Oleg_ivo.Tools.ExceptionCatcher
                     var eventArgs = new ExtendedThreadExceptionEventArgs(e.Exception);
                     AdditionalErrorHandler(this, eventArgs);
                     showError = eventArgs.ShowError;
+                    e.Handled = true;
                 }
             }
             finally
