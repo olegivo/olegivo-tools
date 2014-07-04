@@ -24,7 +24,7 @@ namespace Oleg_ivo.Base.Utils
         public void InitArgs(IEnumerable<string> args)
         {
             var list = args as IList<string> ?? args.ToList();
-            Log.Debug("Инициализация хранилища опций командной строки \n(параметры командной строки:'{0}')", string.Join(" ", list));
+            Log.Debug("{0}: Инициализация хранилища опций командной строки \n(параметры командной строки:'{1}')", typeof(TCommandLineOptionsStorage).Name, string.Join(" ", list));
             Args = list;
             CommandLineOptions = modelBindingDefinition.CreateAndBind(list);
         }
