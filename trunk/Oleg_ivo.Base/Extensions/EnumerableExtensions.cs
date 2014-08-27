@@ -157,6 +157,83 @@ namespace Oleg_ivo.Base.Extensions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TA"></typeparam>
+        /// <typeparam name="TB"></typeparam>
+        /// <typeparam name="TK"></typeparam>
+        /// <typeparam name="TR"></typeparam>
+        /// <param name="a">left source</param>
+        /// <param name="b">right source</param>
+        /// <param name="selectKeyA"></param>
+        /// <param name="selectKeyB"></param>
+        /// <param name="projection"></param>
+        /// <param name="cmp"></param>
+        /// <returns></returns>
+        public static IList<TR> FullOuterGroupJoin<TA, TB, TK, TR>(
+            this IEnumerable<TA> a,
+            IEnumerable<TB> b,
+            Func<TA, TK> selectKeyA,
+            Func<TB, TK> selectKeyB,
+            Func<IEnumerable<TA>, IEnumerable<TB>, TK, TR> projection,
+            IEqualityComparer<TK> cmp = null)
+        {
+            cmp = cmp ?? EqualityComparer<TK>.Default;
+            var aLookup = a.ToLookup(selectKeyA, cmp);
+            var bLookup = b.ToLookup(selectKeyB, cmp);
+
+            var keys = new HashSet<TK>(aLookup.Select(p => p.Key), cmp);
+            keys.UnionWith(bLookup.Select(p => p.Key));
+
+            var join = from key in keys
+                       let xa = aLookup[key]
+                       let xb = bLookup[key]
+                       select projection(xa, xb, key);
+
+            return join.ToList();
+        }
+
+        public static IList<TR> FullOuterJoin<TA, TB, TK, TR>(
+            this IEnumerable<TA> a,
+            IEnumerable<TB> b,
+            Func<TA, TK> selectKeyA,
+            Func<TB, TK> selectKeyB,
+            Func<TA, TB, TK, TR> projection,
+            TA defaultA = default(TA),
+            TB defaultB = default(TB),
+            IEqualityComparer<TK> cmp = null)
+        {
+            cmp = cmp ?? EqualityComparer<TK>.Default;
+            var aLookup = a.ToLookup(selectKeyA, cmp);
+            var bLookup = b.ToLookup(selectKeyB, cmp);
+
+            var keys = new HashSet<TK>(aLookup.Select(p => p.Key), cmp);
+            keys.UnionWith(bLookup.Select(p => p.Key));
+
+            var join = from key in keys
+                       from xa in aLookup[key].DefaultIfEmpty(defaultA)
+                       from xb in bLookup[key].DefaultIfEmpty(defaultB)
+                       select projection(xa, xb, key);
+
+            return join.ToList();
+        }
+
+        public static IList<Tuple<T, T>> FullOuterJoin<T>(this IEnumerable<T> left, IEnumerable<T> right, IEqualityComparer<T> comparer = null)
+        {
+            return left.FullOuterJoin(right, itemLeft => itemLeft, itemRight => itemRight,
+                (itemLeft, itemRight, key) => new Tuple<T, T>(itemLeft, itemRight), cmp: comparer);
+        }
+
+        public static IList<Tuple<T, T>> Join<T>(this IEnumerable<T> left, IEnumerable<T> right,
+            IEqualityComparer<T> comparer = null)
+        {
+            return comparer != null
+                ? left.Join(right, itemLeft => itemLeft, itemRight => itemRight,
+                    (itemLeft, itemRight) => new Tuple<T, T>(itemLeft, itemRight), comparer).ToList()
+                : left.Join(right, itemLeft => itemLeft, itemRight => itemRight,
+                    (itemLeft, itemRight) => new Tuple<T, T>(itemLeft, itemRight)).ToList();
+        }
 
         /// <summary>
         ///  Возвращает значение, связанное с ключом <paramref name="key"/>, или default(TValue), если ключ отсутствует в словаре
