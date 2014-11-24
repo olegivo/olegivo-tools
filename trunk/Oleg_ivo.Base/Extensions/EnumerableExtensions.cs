@@ -548,6 +548,30 @@ namespace Oleg_ivo.Base.Extensions
                 yield return partition.AsReadOnly();
         }
 
+        public static IEnumerable<Tuple<T, T>> FullOuterJoin<T>(this IEnumerable<T> left, IEnumerable<T> right)
+        {
+            if (left == null) throw new ArgumentNullException("left");
+            if (right == null) throw new ArgumentNullException("right");
+
+            var eLeft = left as IList<T> ?? left.ToList();
+            var eRight = right as IList<T> ?? right.ToList();
+            var leftOuterJoin = from first in eLeft
+                                join last in eRight
+                                    on first equals last
+                                    into temp
+                                from last in temp.DefaultIfEmpty(default(T))
+                                select new Tuple<T, T>(first, last);
+            var rightOuterJoin = from last in eRight
+                                 join first in eLeft
+                                     on last equals first
+                                     into temp
+                                 from first in temp.DefaultIfEmpty(default(T))
+                                 select new Tuple<T, T>(first, last);
+            var fullOuterJoin = leftOuterJoin.Union(rightOuterJoin);
+            return fullOuterJoin;
+        }
+
+
 
         #region JoinToString
 
