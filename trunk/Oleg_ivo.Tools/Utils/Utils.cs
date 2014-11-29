@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Oleg_ivo.Tools.Utils
@@ -80,6 +81,24 @@ namespace Oleg_ivo.Tools.Utils
                 }
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Утилиты работы со строками
+        /// </summary>
+        public abstract class FileUtils
+        {
+            public static string UnwrapEnvironmentBasedPath(string path)
+            {
+                if (path.StartsWith("%"))
+                {
+                    var variable = path.Split(new[] { '%' }, StringSplitOptions.RemoveEmptyEntries).First();
+                    path = path.Replace(string.Format("%{0}%", variable),
+                        Environment.GetEnvironmentVariable(variable));
+                }
+                return path;
+            }
+
         }
 
         /// <summary>
