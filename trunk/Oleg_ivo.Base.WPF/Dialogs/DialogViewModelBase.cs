@@ -1,7 +1,7 @@
 using Autofac;
 using Codeplex.Reactive;
-using GalaSoft.MvvmLight;
 using Oleg_ivo.Base.Autofac.DependencyInjection;
+using Oleg_ivo.Base.WPF.ViewModels;
 
 namespace Oleg_ivo.Base.WPF.Dialogs
 {
