@@ -84,9 +84,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\DialogViewModelBase.cs" />
     <Compile Include="Dialogs\IModalDialogService.cs" />
     <Compile Include="Dialogs\IModalWindow.cs" />
     <Compile Include="Dialogs\ModalDialogService.cs" />
+    <Compile Include="Dialogs\ModalWindowBase.cs" />
     <Compile Include="Extensions\ReactiveExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
