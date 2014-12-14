@@ -91,6 +91,7 @@
     <Compile Include="Dialogs\ModalWindowBase.cs" />
     <Compile Include="Extensions\ReactiveExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
