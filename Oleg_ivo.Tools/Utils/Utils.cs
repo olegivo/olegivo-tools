@@ -99,6 +99,35 @@ namespace Oleg_ivo.Tools.Utils
                 return path;
             }
 
+            public class EnvironmentVariableUsage
+            {
+                public string Path;
+                public string VariableName;
+                public string VariableValue;
+                public int VariableUsageLength;
+            }
+
+            public static EnvironmentVariableUsage GetEnvironmentVariableUsage(string path)
+            {
+                var variableUsage =
+                    Environment.GetEnvironmentVariables()
+                        .OfType<DictionaryEntry>()
+                        .Where(entry => path.StartsWith((string) entry.Value))
+                        .Select(entry =>
+                        {
+                            var variableValue = (string) entry.Value;
+                            return new EnvironmentVariableUsage
+                            {
+                                Path = path,
+                                VariableName = (string) entry.Key,
+                                VariableValue = variableValue,
+                                VariableUsageLength = variableValue.Length
+                            };
+                        })
+                        .OrderByDescending(usage => usage.VariableUsageLength)
+                        .FirstOrDefault();
+                return variableUsage;
+            }
         }
 
         /// <summary>
