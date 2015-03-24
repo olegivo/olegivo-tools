@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reactive.Linq;
-using Codeplex.Reactive;
+using Reactive.Bindings;
 
 namespace Oleg_ivo.Base.WPF.Extensions
 {

@@ -1,5 +1,5 @@
 using System.Windows;
-using Codeplex.Reactive;
+using Reactive.Bindings;
 using Oleg_ivo.Base.Autofac.DependencyInjection;
 using Oleg_ivo.Base.WPF.Extensions;
 
