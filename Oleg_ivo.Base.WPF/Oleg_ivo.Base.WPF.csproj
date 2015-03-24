@@ -32,9 +32,50 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+    <Choose>
+		<When Condition=" '$(PackageFrameworkVersion)' == 'net40' ">
+		  <ItemGroup>
+			<Reference Include="Microsoft.Threading.Tasks">
+			  <HintPath>$(PackagesPath)\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+			</Reference>
+			<Reference Include="Microsoft.Threading.Tasks.Extensions">
+			  <HintPath>$(PackagesPath)\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+			</Reference>
+			<Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+			  <HintPath>$(PackagesPath)\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+			</Reference>
+			<Reference Include="ReactiveProperty.NET4">
+			  <HintPath>$(PackagesPath)\ReactiveProperty.2.1.8.1\lib\net4\ReactiveProperty.NET4.dll</HintPath>
+			</Reference>
+			<Reference Include="System.IO">
+			  <HintPath>$(PackagesPath)\Microsoft.Bcl.1.1.9\lib\net40\System.IO.dll</HintPath>
+			</Reference>
+			<Reference Include="System.Threading.Tasks">
+			  <HintPath>$(PackagesPath)\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
+			</Reference>
+			<Reference Include="System.Runtime">
+			  <HintPath>$(PackagesPath)\Microsoft.Bcl.1.1.9\lib\net40\System.Runtime.dll</HintPath>
+			</Reference>
+		  </ItemGroup>
+		</When>
+		<When Condition=" '$(PackageFrameworkVersion)' == 'net45' ">
+		  <ItemGroup>
+			<Reference Include="ReactiveProperty">
+			  <HintPath>..\packages\ReactiveProperty.2.1.8.1\lib\net45\ReactiveProperty.dll</HintPath>
+			</Reference>
+			<Reference Include="ReactiveProperty.DataAnnotations">
+			  <HintPath>..\packages\ReactiveProperty.2.1.8.1\lib\net45\ReactiveProperty.DataAnnotations.dll</HintPath>
+			</Reference>
+			<Reference Include="ReactiveProperty.NET45">
+			  <HintPath>..\packages\ReactiveProperty.2.1.8.1\lib\net45\ReactiveProperty.NET45.dll</HintPath>
+			</Reference>
+		  </ItemGroup>
+		</When>
+	</Choose>
+
   <ItemGroup>
     <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+      <HintPath>$(PackagesPath)\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>$(PackagesPath)\MvvmLightLibs.4.4.32.1\lib\$(PackageFrameworkVersion)\GalaSoft.MvvmLight.dll</HintPath>
@@ -47,15 +88,6 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="ReactiveProperty">
-      <HintPath>..\packages\ReactiveProperty.2.1.8.1\lib\net45\ReactiveProperty.dll</HintPath>
-    </Reference>
-    <Reference Include="ReactiveProperty.DataAnnotations">
-      <HintPath>..\packages\ReactiveProperty.2.1.8.1\lib\net45\ReactiveProperty.DataAnnotations.dll</HintPath>
-    </Reference>
-    <Reference Include="ReactiveProperty.NET45">
-      <HintPath>..\packages\ReactiveProperty.2.1.8.1\lib\net45\ReactiveProperty.NET45.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
