@@ -266,18 +266,18 @@ namespace Oleg_ivo.Tools.Utils
         /// </summary>
         /// <param name="enumType"></param>
         /// <returns></returns>
-        public static Dictionary<int, string> GetEnumMemberDictionary(Type enumType)
+        public static Dictionary<Enum, string> GetEnumMemberDictionary(Type enumType)
         {
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            var dictionary = new Dictionary<Enum, string>();
             if (enumType != null)
             {
-                foreach (string name in Enum.GetNames(enumType))
+                foreach (var name in Enum.GetNames(enumType))
                 {
-                    FieldInfo fieldInfo = enumType.GetField(name);
+                    var fieldInfo = enumType.GetField(name);
                     if (fieldInfo!=null)
                     {
-                        string description = GetDescription(fieldInfo);
-                        int value = (int) Enum.Parse(enumType, name);
+                        var description = GetDescription(fieldInfo);
+                        var value = (Enum)Enum.Parse(enumType, name);
                         dictionary.Add(value, description);
                     }
                 }
@@ -292,15 +292,10 @@ namespace Oleg_ivo.Tools.Utils
         /// <returns></returns>
         public static string GetDescription(Enum enumMember)
         {
-            string description = null;
-
-            Type enumType = enumMember.GetType();
-            if (enumType!=null)
-            {
-                Dictionary<int, string> enumMemberDictionary = GetEnumMemberDictionary(enumType);
-                int value = (int) Enum.Parse(enumType, enumMember.ToString());
-                description = enumMemberDictionary[value];
-            }
+            var enumType = enumMember.GetType();
+            var enumMemberDictionary = GetEnumMemberDictionary(enumType);
+            var value = (Enum) Enum.Parse(enumType, enumMember.ToString());
+            var description = enumMemberDictionary[value];
 
             return description;
         }
