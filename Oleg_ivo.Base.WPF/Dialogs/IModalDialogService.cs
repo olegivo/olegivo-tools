@@ -1,4 +1,5 @@
 ﻿using System;
+using Oleg_ivo.Base.WPF.ViewModels;
 
 namespace Oleg_ivo.Base.WPF.Dialogs
 {
@@ -11,7 +12,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// <param name="view">Представление</param>
         /// <param name="onSetup">Делегат для настройки диалога</param>
         /// <param name="onDialogClose">Делегат, срабатывающий после закрытия диалога</param>
-        void ShowDialog<TDialogViewModel>(IModalWindow<TDialogViewModel> view, Action<IModalWindow<TDialogViewModel>> onSetup, Action<TDialogViewModel, bool?> onDialogClose);
+        void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase;
 
         /*/// <summary>
         /// Показать диалог
@@ -27,14 +28,14 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="view">Представление</param>
         /// <param name="onSetup">Делегат для настройки диалога</param>
-        void ShowDialog<TDialogViewModel>(IModalWindow<TDialogViewModel> view, Action<IModalWindow<TDialogViewModel>> onSetup);
+        void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase;
 
         /// <summary>
         /// Показать диалог
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="view">Представление</param>
-        void ShowDialog<TDialogViewModel>(IModalWindow<TDialogViewModel> view);
+        void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view) where TDialogViewModel : ViewModelBase;
         
         /// <summary>
         /// Показать диалог (представление создаётся внутри)
@@ -42,7 +43,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="onSetup">Делегат для настройки диалога</param>
         /// <param name="onDialogClose">Делегат, срабатывающий после закрытия диалога</param>
-        void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<TDialogViewModel>> onSetup, Action<TDialogViewModel, bool?> onDialogClose);
+        void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase;
 
         /*/// <summary>
         /// Показать диалог (представление создаётся внутри)
@@ -56,19 +57,19 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="onSetup">Делегат для настройки диалога</param>
-        void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<TDialogViewModel>> onSetup);
+        void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase;
 
         /// <summary>
         /// Показать диалог (представление создаётся внутри)
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        void CreateAndShowDialog<TDialogViewModel>();
+        void CreateAndShowDialog<TDialogViewModel>() where TDialogViewModel : ViewModelBase;
         
         /// <summary>
         /// Получить новое диалоговое представление
         /// </summary>
-        /// <typeparam name="TViewModel">Тип модели представления</typeparam>
+        /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <returns></returns>
-        IModalWindow<TViewModel> CreateDialog<TViewModel>();
+        IModalWindow<DialogViewModel<TDialogViewModel>> CreateDialog<TDialogViewModel>() where TDialogViewModel : ViewModelBase;
     }
 }

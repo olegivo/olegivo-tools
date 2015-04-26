@@ -1,6 +1,10 @@
 using System;
+using System.Reactive.Disposables;
+using System.Windows.Controls;
 using Autofac;
 using Oleg_ivo.Base.Autofac;
+using Oleg_ivo.Base.Autofac.DependencyInjection;
+using Oleg_ivo.Base.WPF.ViewModels;
 
 namespace Oleg_ivo.Base.WPF.Dialogs
 {
@@ -23,7 +27,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// <param name="view">Представление</param>
         /// <param name="onSetup">Делегат для настройки диалога</param>
         /// <param name="onDialogClose">Делегат, срабатывающий после закрытия диалога</param>
-        public void ShowDialog<TDialogViewModel>(IModalWindow<TDialogViewModel> view, Action<IModalWindow<TDialogViewModel>> onSetup, Action<TDialogViewModel, bool?> onDialogClose)
+        public void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase
         {
             if (onSetup != null)
             {
@@ -53,7 +57,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="view">Представление</param>
         /// <param name="onSetup">Делегат для настройки диалога</param>
-        public void ShowDialog<TDialogViewModel>(IModalWindow<TDialogViewModel> view, Action<IModalWindow<TDialogViewModel>> onSetup)
+        public void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase
         {
             this.ShowDialog(view, onSetup, null);
         }
@@ -63,7 +67,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="view">Представление</param>
-        public void ShowDialog<TDialogViewModel>(IModalWindow<TDialogViewModel> view)
+        public void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view) where TDialogViewModel : ViewModelBase
         {
             this.ShowDialog(view, null, null);
         }
@@ -74,7 +78,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="onSetup">Делегат для настройки диалога</param>
         /// <param name="onDialogClose">Делегат, срабатывающий после закрытия диалога</param>
-        public void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<TDialogViewModel>> onSetup, Action<TDialogViewModel, bool?> onDialogClose)
+        public void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase
         {
             ShowDialog(CreateDialog<TDialogViewModel>(), onSetup, onDialogClose);
         }
@@ -94,7 +98,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="onSetup">Делегат для настройки диалога</param>
-        public void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<TDialogViewModel>> onSetup)
+        public void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase
         {
             CreateAndShowDialog(onSetup, null);
         }
@@ -103,9 +107,9 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// Показать диалог (представление создаётся внутри)
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        public void CreateAndShowDialog<TDialogViewModel>()
+        public void CreateAndShowDialog<TDialogViewModel>() where TDialogViewModel : ViewModelBase
         {
-            CreateAndShowDialog((Action<IModalWindow<TDialogViewModel>>)null, null);
+            CreateAndShowDialog((Action<IModalWindow<DialogViewModel<TDialogViewModel>>>)null, null);
         }
 
         /// <summary>
@@ -113,9 +117,81 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <returns></returns>
-        public IModalWindow<TDialogViewModel> CreateDialog<TDialogViewModel>()
+        public IModalWindow<DialogViewModel<TDialogViewModel>> CreateDialog<TDialogViewModel>() where TDialogViewModel : ViewModelBase
         {
-            return context.Resolve<IModalWindow<TDialogViewModel>>();
+/*
+            var modalWindowContentBase = context.Resolve<IModalWindowContent<TDialogViewModel>>();
+            var dialogViewModelBase = context.Resolve<DialogViewModel<TDialogViewModel>>();
+            return new ModalWindowProxy<TDialogViewModel>(dialogViewModelBase, modalWindowContentBase);
+*/
+            return context.ResolveUnregistered<ModalWindowProxy<TDialogViewModel>>();
+            //return context.Resolve<IModalWindow<TDialogViewModel>>();
+        }
+
+        protected class ModalWindowProxy<TDialogViewModel> : IModalWindow<DialogViewModel<TDialogViewModel>> where TDialogViewModel : ViewModelBase
+        {
+            private readonly DialogViewModel<TDialogViewModel> dialogViewModel;
+            private readonly DialogWindow dialogWindow;//TODO: выделить интерфейс
+            private readonly CompositeDisposable disposer;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+            /// </summary>
+            public ModalWindowProxy(DialogViewModel<TDialogViewModel> dialogViewModel, IModalWindowContent<TDialogViewModel> modalWindowContentControl)
+            {
+                this.dialogViewModel = Enforce.ArgumentNotNull(dialogViewModel, "dialogViewModel");
+                var contentControl = Enforce.ArgumentNotNull(modalWindowContentControl, "modalWindowContentControl");
+                dialogWindow = new DialogWindow((ContentControl) contentControl, dialogViewModel);//TODO: resolve
+                disposer = new CompositeDisposable(dialogWindow, dialogViewModel);
+            }
+
+            public bool? DialogResult
+            {
+                get { return dialogWindow.DialogResult; }
+                set { dialogWindow.DialogResult= value; }
+            }
+
+            public event EventHandler Closed
+            {
+                add { dialogWindow.Closed += value; }
+                remove { dialogWindow.Closed -= value; }
+            }
+
+            public void Show()
+            {
+                dialogWindow.Show();
+            }
+
+            public bool? ShowDialog()
+            {
+                return dialogWindow.ShowDialog();
+            }
+
+
+            public DialogViewModel<TDialogViewModel> ViewModel
+            {
+                get { return dialogViewModel; }
+                set { throw new NotImplementedException(); }
+            }
+
+            public string Title
+            {
+                get { return dialogViewModel.Caption; }
+                set { dialogViewModel.Caption = value; }
+            }
+
+            public void Close()
+            {
+                dialogWindow.Close();
+            }
+
+            /// <summary>
+            /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            /// </summary>
+            public void Dispose()
+            {
+                disposer.Dispose();
+            }
         }
     }
 }
