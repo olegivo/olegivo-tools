@@ -53,7 +53,7 @@
     </Reference>
     <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(PackagesPath)\NLog.3.2.0.0\lib\$(PackageFrameworkVersion)\NLog.dll</HintPath>
+      <HintPath>.$(PackagesPath)\NLog.3.2.1\lib\$(PackageFrameworkVersion)\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
