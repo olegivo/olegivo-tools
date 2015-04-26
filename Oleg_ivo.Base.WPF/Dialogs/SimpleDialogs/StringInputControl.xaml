@@ -1,0 +1,19 @@
+﻿<dialogs:DialogContentControl 
+    x:Class="Oleg_ivo.Base.WPF.Dialogs.SimpleDialogs.StringInputControl"
+    x:TypeArguments="simpleDialogs:StringInputViewModel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dialogs="clr-namespace:Oleg_ivo.Base.WPF.Dialogs"
+    xmlns:simpleDialogs="clr-namespace:Oleg_ivo.Base.WPF.Dialogs.SimpleDialogs"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance Type=simpleDialogs:StringInputViewModel}"
+    Height="130" Width="400">
+    <DockPanel 
+        Dock="Left"
+        Margin="5">
+        <TextBlock Text="{Binding Description.Value}" MinWidth="40" Margin="5"/>
+        <TextBox Text="{Binding Value.Value}" Margin="5"/>
+    </DockPanel>
+</dialogs:DialogContentControl>

@@ -12,14 +12,4 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         string Title { get; set; }
         void Close();
     }
-
-    public interface IModalWindowContent<TViewModel>
-    {
-        TViewModel ViewModel { get; set; }
-/* TODO:
-        event EventHandler Closed;
-        string Title { get; set; }
-        void Close();
-*/
-    }
 }
