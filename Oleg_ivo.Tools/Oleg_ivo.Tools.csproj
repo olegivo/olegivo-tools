@@ -130,6 +130,7 @@
     <Compile Include="Utils\Reflection.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Utils\Strings.cs" />
+    <Compile Include="Utils\Time.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
