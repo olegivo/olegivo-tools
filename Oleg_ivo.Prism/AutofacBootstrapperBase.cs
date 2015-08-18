@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Markup;
 using Autofac;
 using Microsoft.Practices.Prism.Modularity;
+using Oleg_ivo.Base.Autofac.Modules;
 using Prism.AutofacExtension;
 
-namespace Oleg_ivo.Base.Autofac.Modules
+namespace Oleg_ivo.Prism
 {
     public class AutofacBootstrapperBase<TMainShell, TCommandLineOptions, TPrismModule, TAutofacModule> : AutofacBootstrapper
         where TMainShell : Window
@@ -26,6 +29,9 @@ namespace Oleg_ivo.Base.Autofac.Modules
         protected override void InitializeShell()
         {
             base.InitializeShell();
+
+            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),
+                new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
             Application.Current.MainWindow = (Window)Shell;
             Application.Current.MainWindow.Show();
