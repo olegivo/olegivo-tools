@@ -6,6 +6,8 @@ namespace Oleg_ivo.Base.WPF.Dialogs
     public abstract class DialogViewModelBase : ViewModelBase
     {
         private string caption;
+        private double height;
+        private double width;
 
         protected DialogViewModelBase(ViewModelBase contentViewModel)
         {
@@ -26,6 +28,26 @@ namespace Oleg_ivo.Base.WPF.Dialogs
                 if (caption == value) return;
                 caption = value;
                 RaisePropertyChanged(() => Caption);
+            }
+        }
+
+        public double Height
+        {
+            get { return height; }
+            set
+            {
+                height = value;
+                RaisePropertyChanged(() => Height);
+            }
+        }
+
+        public double Width
+        {
+            get { return width; }
+            set
+            {
+                width = value;
+                RaisePropertyChanged(() => Width);
             }
         }
     }

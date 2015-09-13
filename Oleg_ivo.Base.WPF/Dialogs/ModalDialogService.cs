@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Reactive.Disposables;
 using System.Windows.Controls;
 using Autofac;
@@ -9,7 +9,7 @@ using Oleg_ivo.Base.WPF.ViewModels;
 namespace Oleg_ivo.Base.WPF.Dialogs
 {
     /// <summary>
-    /// Сервис предоставления и показа диалогов
+    /// РЎРµСЂРІРёСЃ РїСЂРµРґРѕСЃС‚Р°РІР»РµРЅРёСЏ Рё РїРѕРєР°Р·Р° РґРёР°Р»РѕРіРѕРІ
     /// </summary>
     public class ModalDialogService : IModalDialogService
     {
@@ -21,13 +21,13 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         private readonly IComponentContext context;
 
         /// <summary>
-        /// Показать диалог
+        /// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі
         /// </summary>
-        /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        /// <param name="view">Представление</param>
-        /// <param name="onSetup">Делегат для настройки диалога</param>
-        /// <param name="onDialogClose">Делегат, срабатывающий после закрытия диалога</param>
-        public void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase
+        /// <typeparam name="TDialogViewModel">РўРёРї РјРѕРґРµР»Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ</typeparam>
+        /// <param name="view">РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ</param>
+        /// <param name="onSetup">Р”РµР»РµРіР°С‚ РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё РґРёР°Р»РѕРіР°</param>
+        /// <param name="onDialogClose">Р”РµР»РµРіР°С‚, СЃСЂР°Р±Р°С‚С‹РІР°СЋС‰РёР№ РїРѕСЃР»Рµ Р·Р°РєСЂС‹С‚РёСЏ РґРёР°Р»РѕРіР°</param>
+        public bool? ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase
         {
             if (onSetup != null)
             {
@@ -37,85 +37,85 @@ namespace Oleg_ivo.Base.WPF.Dialogs
             {
                 view.Closed += (sender, e) => onDialogClose(view.ViewModel, view.DialogResult);
             }
-            view.ShowDialog();
+            return view.ShowDialog();
         }
 
         /*/// <summary>
-        /// Показать диалог
+        /// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі
         /// </summary>
-        /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        /// <param name="view">Представление</param>
-        /// <param name="onDialogClose">Делегат, срабатывающий после закрытия диалога</param>
+        /// <typeparam name="TDialogViewModel">РўРёРї РјРѕРґРµР»Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ</typeparam>
+        /// <param name="view">РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ</param>
+        /// <param name="onDialogClose">Р”РµР»РµРіР°С‚, СЃСЂР°Р±Р°С‚С‹РІР°СЋС‰РёР№ РїРѕСЃР»Рµ Р·Р°РєСЂС‹С‚РёСЏ РґРёР°Р»РѕРіР°</param>
         public void ShowDialog<TDialogViewModel>(IModalWindow<TDialogViewModel> view, Action<TDialogViewModel, bool?> onDialogClose)
         {
             this.ShowDialog(view, null, onDialogClose);
         }*/
 
         /// <summary>
-        /// Показать диалог
+        /// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі
         /// </summary>
-        /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        /// <param name="view">Представление</param>
-        /// <param name="onSetup">Делегат для настройки диалога</param>
-        public void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase
+        /// <typeparam name="TDialogViewModel">РўРёРї РјРѕРґРµР»Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ</typeparam>
+        /// <param name="view">РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ</param>
+        /// <param name="onSetup">Р”РµР»РµРіР°С‚ РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё РґРёР°Р»РѕРіР°</param>
+        public bool? ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase
         {
-            this.ShowDialog(view, onSetup, null);
+            return this.ShowDialog(view, onSetup, null);
         }
 
         /// <summary>
-        /// Показать диалог
+        /// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі
         /// </summary>
-        /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        /// <param name="view">Представление</param>
-        public void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view) where TDialogViewModel : ViewModelBase
+        /// <typeparam name="TDialogViewModel">РўРёРї РјРѕРґРµР»Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ</typeparam>
+        /// <param name="view">РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ</param>
+        public bool? ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view) where TDialogViewModel : ViewModelBase
         {
-            this.ShowDialog(view, null, null);
+            return this.ShowDialog(view, null, null);
         }
 
         /// <summary>
-        /// Показать диалог (представление создаётся внутри)
+        /// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі (РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ СЃРѕР·РґР°С‘С‚СЃСЏ РІРЅСѓС‚СЂРё)
         /// </summary>
-        /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        /// <param name="onSetup">Делегат для настройки диалога</param>
-        /// <param name="onDialogClose">Делегат, срабатывающий после закрытия диалога</param>
-        public void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase
+        /// <typeparam name="TDialogViewModel">РўРёРї РјРѕРґРµР»Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ</typeparam>
+        /// <param name="onSetup">Р”РµР»РµРіР°С‚ РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё РґРёР°Р»РѕРіР°</param>
+        /// <param name="onDialogClose">Р”РµР»РµРіР°С‚, СЃСЂР°Р±Р°С‚С‹РІР°СЋС‰РёР№ РїРѕСЃР»Рµ Р·Р°РєСЂС‹С‚РёСЏ РґРёР°Р»РѕРіР°</param>
+        public bool? CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase
         {
-            ShowDialog(CreateDialog<TDialogViewModel>(), onSetup, onDialogClose);
+            return ShowDialog(CreateDialog<TDialogViewModel>(), onSetup, onDialogClose);
         }
 
         /*/// <summary>
-        /// Показать диалог (представление создаётся внутри)
+        /// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі (РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ СЃРѕР·РґР°С‘С‚СЃСЏ РІРЅСѓС‚СЂРё)
         /// </summary>
-        /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        /// <param name="onDialogClose">Делегат, срабатывающий после закрытия диалога</param>
+        /// <typeparam name="TDialogViewModel">РўРёРї РјРѕРґРµР»Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ</typeparam>
+        /// <param name="onDialogClose">Р”РµР»РµРіР°С‚, СЃСЂР°Р±Р°С‚С‹РІР°СЋС‰РёР№ РїРѕСЃР»Рµ Р·Р°РєСЂС‹С‚РёСЏ РґРёР°Р»РѕРіР°</param>
         public void CreateAndShowDialog<TDialogViewModel>(Action<TDialogViewModel, bool?> onDialogClose)
         {
             ShowDialog(null, onDialogClose);
         }*/
 
         /// <summary>
-        /// Показать диалог (представление создаётся внутри)
+        /// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі (РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ СЃРѕР·РґР°С‘С‚СЃСЏ РІРЅСѓС‚СЂРё)
         /// </summary>
-        /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        /// <param name="onSetup">Делегат для настройки диалога</param>
-        public void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase
+        /// <typeparam name="TDialogViewModel">РўРёРї РјРѕРґРµР»Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ</typeparam>
+        /// <param name="onSetup">Р”РµР»РµРіР°С‚ РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё РґРёР°Р»РѕРіР°</param>
+        public bool? CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase
         {
-            CreateAndShowDialog(onSetup, null);
+            return CreateAndShowDialog(onSetup, null);
         }
 
         /// <summary>
-        /// Показать диалог (представление создаётся внутри)
+        /// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі (РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ СЃРѕР·РґР°С‘С‚СЃСЏ РІРЅСѓС‚СЂРё)
         /// </summary>
-        /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        public void CreateAndShowDialog<TDialogViewModel>() where TDialogViewModel : ViewModelBase
+        /// <typeparam name="TDialogViewModel">РўРёРї РјРѕРґРµР»Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ</typeparam>
+        public bool? CreateAndShowDialog<TDialogViewModel>() where TDialogViewModel : ViewModelBase
         {
-            CreateAndShowDialog((Action<IModalWindow<DialogViewModel<TDialogViewModel>>>)null, null);
+            return CreateAndShowDialog((Action<IModalWindow<DialogViewModel<TDialogViewModel>>>)null, null);
         }
 
         /// <summary>
-        /// Получить новое диалоговое представление
+        /// РџРѕР»СѓС‡РёС‚СЊ РЅРѕРІРѕРµ РґРёР°Р»РѕРіРѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ
         /// </summary>
-        /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
+        /// <typeparam name="TDialogViewModel">РўРёРї РјРѕРґРµР»Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ</typeparam>
         /// <returns></returns>
         public IModalWindow<DialogViewModel<TDialogViewModel>> CreateDialog<TDialogViewModel>() where TDialogViewModel : ViewModelBase
         {
@@ -131,7 +131,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         protected class ModalWindowProxy<TDialogViewModel> : IModalWindow<DialogViewModel<TDialogViewModel>> where TDialogViewModel : ViewModelBase
         {
             private readonly DialogViewModel<TDialogViewModel> dialogViewModel;
-            private readonly DialogWindow dialogWindow;//TODO: выделить интерфейс
+            private readonly DialogWindow dialogWindow;//TODO: РІС‹РґРµР»РёС‚СЊ РёРЅС‚РµСЂС„РµР№СЃ
             private readonly CompositeDisposable disposer;
 
             /// <summary>
@@ -178,6 +178,18 @@ namespace Oleg_ivo.Base.WPF.Dialogs
             {
                 get { return dialogViewModel.Caption; }
                 set { dialogViewModel.Caption = value; }
+            }
+
+            public double Height
+            {
+                get { return dialogViewModel.Height; }
+                set { dialogViewModel.Height = value; }
+            }
+
+            public double Width
+            {
+                get { return dialogViewModel.Width; }
+                set { dialogViewModel.Width = value; }
             }
 
             public void Close()

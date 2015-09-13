@@ -10,11 +10,20 @@
     d:DataContext="{d:DesignInstance Type=dialogs:DialogViewModelBase}"
     x:Name="Window"
     Title="{Binding Caption}"
-    Height="130" Width="400" WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen"
+    >
+    
+    <Window.Height>
+        <Binding Path="Height" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
+    </Window.Height>
+    <Window.Width>
+        <Binding Path="Width" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
+    </Window.Width>
     <Window.Resources>
         <system:Boolean x:Key="TrueValue">True</system:Boolean>
         <system:Boolean x:Key="FalseValue">False</system:Boolean>
     </Window.Resources>
+    
 
     <Window.InputBindings>
         <KeyBinding Key="Enter" Command="{Binding CommandClose}" CommandParameter="{StaticResource TrueValue}" />

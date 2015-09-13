@@ -10,6 +10,8 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         bool? ShowDialog();
         TViewModel ViewModel { get; set; }
         string Title { get; set; }
+        double Height { get; set; }
+        double Width { get; set; }
         void Close();
     }
 }

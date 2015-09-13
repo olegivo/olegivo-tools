@@ -12,7 +12,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// <param name="view">Представление</param>
         /// <param name="onSetup">Делегат для настройки диалога</param>
         /// <param name="onDialogClose">Делегат, срабатывающий после закрытия диалога</param>
-        void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase;
+        bool? ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase;
 
         /*/// <summary>
         /// Показать диалог
@@ -28,22 +28,22 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="view">Представление</param>
         /// <param name="onSetup">Делегат для настройки диалога</param>
-        void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase;
+        bool? ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view, Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase;
 
         /// <summary>
         /// Показать диалог
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="view">Представление</param>
-        void ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view) where TDialogViewModel : ViewModelBase;
-        
+        bool? ShowDialog<TDialogViewModel>(IModalWindow<DialogViewModel<TDialogViewModel>> view) where TDialogViewModel : ViewModelBase;
+
         /// <summary>
         /// Показать диалог (представление создаётся внутри)
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="onSetup">Делегат для настройки диалога</param>
         /// <param name="onDialogClose">Делегат, срабатывающий после закрытия диалога</param>
-        void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase;
+        bool? CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup, Action<DialogViewModel<TDialogViewModel>, bool?> onDialogClose) where TDialogViewModel : ViewModelBase;
 
         /*/// <summary>
         /// Показать диалог (представление создаётся внутри)
@@ -57,13 +57,13 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
         /// <param name="onSetup">Делегат для настройки диалога</param>
-        void CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase;
+        bool? CreateAndShowDialog<TDialogViewModel>(Action<IModalWindow<DialogViewModel<TDialogViewModel>>> onSetup) where TDialogViewModel : ViewModelBase;
 
         /// <summary>
         /// Показать диалог (представление создаётся внутри)
         /// </summary>
         /// <typeparam name="TDialogViewModel">Тип модели представления</typeparam>
-        void CreateAndShowDialog<TDialogViewModel>() where TDialogViewModel : ViewModelBase;
+        bool? CreateAndShowDialog<TDialogViewModel>() where TDialogViewModel : ViewModelBase;
         
         /// <summary>
         /// Получить новое диалоговое представление
