@@ -27,7 +27,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
             {
                 if (caption == value) return;
                 caption = value;
-                RaisePropertyChanged(() => Caption);
+                RaisePropertyChanged("Caption");
             }
         }
 
@@ -37,7 +37,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
             set
             {
                 height = value;
-                RaisePropertyChanged(() => Height);
+                RaisePropertyChanged("Height");
             }
         }
 
@@ -47,7 +47,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
             set
             {
                 width = value;
-                RaisePropertyChanged(() => Width);
+                RaisePropertyChanged("Width");
             }
         }
     }
