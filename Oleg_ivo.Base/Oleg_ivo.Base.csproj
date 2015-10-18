@@ -101,6 +101,7 @@
     <Compile Include="Extensions\ResourceExtensions.cs" />
     <Compile Include="Extensions\SqlBulkCopyExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TypeSwitch.cs" />
     <Compile Include="NamedObject\INamedObject.cs" />
     <Compile Include="NamedObject\NamedObjectExtensions.cs" />
     <Compile Include="NamedObject\NameForm.cs" />
