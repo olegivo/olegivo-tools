@@ -1,0 +1,65 @@
+﻿<Window 
+    x:Class="Oleg_ivo.Base.WPF.Dialogs.DialogWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:dialogs="clr-namespace:Oleg_ivo.Base.WPF.Dialogs"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance Type=dialogs:DialogViewModelBase}"
+    x:Name="Window"
+    Title="{Binding Caption}"
+    WindowStartupLocation="CenterScreen"
+    >
+    
+    <Window.Height>
+        <Binding Path="Height" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+    </Window.Height>
+    <Window.Width>
+        <Binding Path="Width" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+    </Window.Width>
+
+    <Window.Resources>
+        <system:Boolean x:Key="TrueValue">True</system:Boolean>
+        <system:Boolean x:Key="FalseValue">False</system:Boolean>
+    </Window.Resources>
+    
+
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding CommandClose}" CommandParameter="{StaticResource TrueValue}" />
+        <KeyBinding Key="Escape" Command="{Binding CommandClose}" CommandParameter="{StaticResource FalseValue}" />
+    </Window.InputBindings>
+
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ContentControl 
+            Grid.Row="0"
+            x:Name="ContentControl"
+            DataContext="{Binding ContentViewModel}">
+        </ContentControl>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button 
+                Content="OK" 
+                Command="{Binding CommandClose}"
+                CommandParameter="{StaticResource TrueValue}"
+                Width="75" 
+                Height="23" 
+                HorizontalAlignment="Right" 
+                Margin="0,5,20,5" />
+            <Button 
+                Content="Cancel" 
+                Command="{Binding CommandClose}"
+                CommandParameter="{StaticResource FalseValue}"
+                Width="75" 
+                Height="23" 
+                HorizontalAlignment="Right" 
+                Margin="0,5,20,5" />
+        </StackPanel>
+    </Grid>
+</Window>

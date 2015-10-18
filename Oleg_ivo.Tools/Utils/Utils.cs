@@ -105,6 +105,11 @@ namespace Oleg_ivo.Tools.Utils
                 public string VariableName;
                 public string VariableValue;
                 public int VariableUsageLength;
+
+                public string WrapPathWithVariable(string source)
+                {
+                    return source.Replace(VariableValue, string.Format("%{0}%", VariableName));
+                }
             }
 
             public static EnvironmentVariableUsage GetEnvironmentVariableUsage(string path)

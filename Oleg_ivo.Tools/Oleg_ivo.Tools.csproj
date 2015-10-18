@@ -85,9 +85,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+    <Reference Include="NLog, Version=3.2.1.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(PackagesPath)\NLog.3.2.0.0\lib\$(PackageFrameworkVersion)\NLog.dll</HintPath>
+      <HintPath>$(PackagesPath)\NLog.3.2.1\lib\$(PackageFrameworkVersion)\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -130,6 +130,7 @@
     <Compile Include="Utils\Reflection.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Utils\Strings.cs" />
+    <Compile Include="Utils\Time.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

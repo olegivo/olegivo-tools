@@ -13,6 +13,9 @@ namespace Oleg_ivo.Base.WPF.ViewModels
         public void Dispose()
         {
             Disposer.Dispose();
+            if(Disposed!=null) Disposed(this, EventArgs.Empty);
         }
+
+        public event EventHandler Disposed;
     }
 }
