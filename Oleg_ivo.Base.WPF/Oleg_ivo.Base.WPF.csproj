@@ -127,6 +127,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentControlViewBase.cs" />
+    <Compile Include="LogBinding\DefaultEventViewBox.xaml.cs">
+      <DependentUpon>DefaultEventViewBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogBinding\EventViewBox.cs" />
+    <Compile Include="LogBinding\LogLevelStyleSelector.cs" />
+    <Compile Include="LogBinding\ObservableLogTarget.cs" />
+    <Compile Include="LogBinding\RenderedLogEvent.cs" />
     <Compile Include="WindowViewBase.cs" />
     <Compile Include="Dialogs\DialogsAutofacModule.cs" />
     <Compile Include="Dialogs\DialogViewModel.cs" />
@@ -164,6 +171,10 @@
     <Page Include="Dialogs\SimpleDialogs\StringInputControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogBinding\DefaultEventViewBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
