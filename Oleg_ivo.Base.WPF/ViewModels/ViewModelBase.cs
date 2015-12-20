@@ -17,5 +17,13 @@ namespace Oleg_ivo.Base.WPF.ViewModels
         }
 
         public event EventHandler Disposed;
+
+        protected void RaisePropertiesChanged(params string[] prorertyNames)
+        {
+            foreach (var prorertyName in prorertyNames)
+            {
+                RaisePropertyChanged(prorertyName);
+            }
+        }
     }
 }
