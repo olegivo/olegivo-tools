@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentControlViewBase.cs" />
+    <Compile Include="Converters\BooleanConverter.cs" />
     <Compile Include="WindowViewBase.cs" />
     <Compile Include="Dialogs\DialogsAutofacModule.cs" />
     <Compile Include="Dialogs\DialogViewModel.cs" />
