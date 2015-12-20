@@ -38,7 +38,10 @@ namespace Oleg_ivo.Base.Autofac.DependencyInjection
                                    ? new KeyedService(attr.ServiceName, propertyType) as Service
                                    : new TypedService(propertyType) as Service);
 
-                if (!attr.Required && !context.IsRegisteredService(service))
+                var isRegisteredService = context.IsRegisteredService(service);
+                var allowResolveUnregistered = attr.AllowResolveUnregistered;
+
+                if (!attr.Required && !isRegisteredService && !allowResolveUnregistered)
                     continue;
 
                 var accessors = property.GetAccessors(false);
@@ -47,7 +50,9 @@ namespace Oleg_ivo.Base.Autofac.DependencyInjection
 
                 object propertyValue;
                 if (attr.DefaultType == null)
-                    propertyValue = context.ResolveService(service);
+                    propertyValue = isRegisteredService && !allowResolveUnregistered
+                        ? context.ResolveService(service)
+                        : context.ResolveUnregistered(propertyType);
                 else
                 {
                     if (!context.TryResolveService(service, out propertyValue))

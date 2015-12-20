@@ -111,6 +111,9 @@
     <Reference Include="System.Reactive.PlatformServices">
       <HintPath>$(PackagesPath)\Rx-PlatformServices.2.2.5\lib\$(PackageFrameworkVersion)\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
+    <Reference Include="System.Reactive.Windows.Threading">
+      <HintPath>$(PackagesPath)\Rx-XAML.2.2.5\lib\$(PackageFrameworkVersion)\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -128,6 +131,13 @@
   <ItemGroup>
     <Compile Include="ContentControlViewBase.cs" />
     <Compile Include="Converters\BooleanConverter.cs" />
+    <Compile Include="LogBinding\DefaultEventViewBox.xaml.cs">
+      <DependentUpon>DefaultEventViewBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogBinding\EventViewBox.cs" />
+    <Compile Include="LogBinding\LogLevelStyleSelector.cs" />
+    <Compile Include="LogBinding\ObservableLogTarget.cs" />
+    <Compile Include="LogBinding\RenderedLogEvent.cs" />
     <Compile Include="WindowViewBase.cs" />
     <Compile Include="Dialogs\DialogsAutofacModule.cs" />
     <Compile Include="Dialogs\DialogViewModel.cs" />
@@ -165,6 +175,10 @@
     <Page Include="Dialogs\SimpleDialogs\StringInputControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogBinding\DefaultEventViewBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
