@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reactive.Disposables;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Autofac;
 using Oleg_ivo.Base.Autofac;
 using Oleg_ivo.Base.Autofac.DependencyInjection;
@@ -190,6 +191,12 @@ namespace Oleg_ivo.Base.WPF.Dialogs
             {
                 get { return dialogViewModel.Width; }
                 set { dialogViewModel.Width = value; }
+            }
+
+            public ImageSource Icon
+            {
+                get { return dialogViewModel.Icon; }
+                set { dialogViewModel.Icon = value; }
             }
 
             public void Close()

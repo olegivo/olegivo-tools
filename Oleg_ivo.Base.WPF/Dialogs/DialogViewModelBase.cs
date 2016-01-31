@@ -1,3 +1,4 @@
+using System.Windows.Media;
 using Oleg_ivo.Base.WPF.ViewModels;
 using Reactive.Bindings;
 
@@ -8,6 +9,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         private string caption;
         private double height;
         private double width;
+        private ImageSource icon;
 
         protected DialogViewModelBase(ViewModelBase contentViewModel)
         {
@@ -48,6 +50,16 @@ namespace Oleg_ivo.Base.WPF.Dialogs
             {
                 width = value;
                 RaisePropertyChanged("Width");
+            }
+        }
+
+        public ImageSource Icon
+        {
+            get { return icon; }
+            set
+            {
+                icon = value;
+                RaisePropertyChanged("Icon");
             }
         }
     }

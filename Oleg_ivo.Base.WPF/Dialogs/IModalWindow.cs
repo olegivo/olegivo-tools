@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media;
 
 namespace Oleg_ivo.Base.WPF.Dialogs
 {
@@ -12,6 +13,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         string Title { get; set; }
         double Height { get; set; }
         double Width { get; set; }
+        ImageSource Icon { get; set; }
         void Close();
     }
 }

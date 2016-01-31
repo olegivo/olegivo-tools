@@ -10,6 +10,7 @@
     d:DataContext="{d:DesignInstance Type=dialogs:DialogViewModelBase}"
     x:Name="Window"
     Title="{Binding Caption}"
+    Icon="{Binding Icon}"
     WindowStartupLocation="CenterScreen"
     >
     
