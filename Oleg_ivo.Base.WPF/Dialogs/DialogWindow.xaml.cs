@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reactive.Disposables;
 using System.Windows.Controls;
+using Oleg_ivo.Base.WPF.Extensions;
 
 namespace Oleg_ivo.Base.WPF.Dialogs
 {
@@ -9,7 +10,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
     /// </summary>
     public partial class DialogWindow : IDisposable
     {
-        private readonly CompositeDisposable dispiser;
+        private readonly CompositeDisposable disposer;
 
         public DialogWindow()
         {
@@ -25,7 +26,8 @@ namespace Oleg_ivo.Base.WPF.Dialogs
             this.DataContext = dialogViewModel;
             ContentView = contentView;
             ContentControl.Content = ContentView;
-            dispiser = new CompositeDisposable(dialogViewModel.CommandClose.Subscribe(b => DialogResult = b));
+            this.SetActiveWindowOwner();
+            disposer = new CompositeDisposable(dialogViewModel.CommandClose.Subscribe(b => DialogResult = b));
         }
 
         public ContentControl ContentView { get; private set; }
@@ -35,7 +37,7 @@ namespace Oleg_ivo.Base.WPF.Dialogs
         /// </summary>
         public void Dispose()
         {
-            dispiser.Dispose();
+            disposer.Dispose();
         }
     }
 }
