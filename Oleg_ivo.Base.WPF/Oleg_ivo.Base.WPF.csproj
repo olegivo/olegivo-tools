@@ -131,6 +131,7 @@
   <ItemGroup>
     <Compile Include="ContentControlViewBase.cs" />
     <Compile Include="Converters\BooleanConverter.cs" />
+    <Compile Include="Converters\MultiBooleanConverter.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="LogBinding\DefaultEventViewBox.xaml.cs">
       <DependentUpon>DefaultEventViewBox.xaml</DependentUpon>
