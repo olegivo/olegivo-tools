@@ -129,6 +129,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\Patterns\ICase.cs" />
+    <Compile Include="Converters\Patterns\ICompositeConverter.cs" />
+    <Compile Include="Converters\Patterns\ISwitchConverter.cs" />
+    <Compile Include="Converters\Patterns\CaseSet.cs" />
+    <Compile Include="Converters\Patterns\SwitchConverter.cs" />
+    <Compile Include="Markup\Case.cs" />
     <Compile Include="PasswordBoxAssistant.cs" />
     <Compile Include="ContentControlViewBase.cs" />
     <Compile Include="Converters\BooleanConverter.cs" />
