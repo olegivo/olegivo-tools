@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using Oleg_ivo.Base.WPF.Converters;
 
 namespace Oleg_ivo.Base.WPF.Converters
 {
@@ -31,6 +32,14 @@ namespace Oleg_ivo.Base.WPF.Converters
     public sealed class BooleanToVisibilityConverter : BooleanConverter<Visibility>
     {
         public BooleanToVisibilityConverter() : base(Visibility.Visible, Visibility.Collapsed)
+        {
+        }
+    }
+
+    public sealed class InverseBooleanConverter : BooleanConverter<bool>
+    {
+        public InverseBooleanConverter()
+            : base(false, true)
         {
         }
     }
