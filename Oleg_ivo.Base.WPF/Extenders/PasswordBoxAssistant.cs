@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Oleg_ivo.Base.WPF
+namespace Oleg_ivo.Base.WPF.Extenders
 {
     public static class PasswordBoxAssistant
     {
