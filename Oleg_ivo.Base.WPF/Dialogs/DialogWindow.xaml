@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:dialogs="clr-namespace:Oleg_ivo.Base.WPF.Dialogs"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance Type=dialogs:DialogViewModelBase}"
@@ -21,15 +20,9 @@
         <Binding Path="Width" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
     </Window.Width>
 
-    <Window.Resources>
-        <system:Boolean x:Key="TrueValue">True</system:Boolean>
-        <system:Boolean x:Key="FalseValue">False</system:Boolean>
-    </Window.Resources>
-    
-
     <Window.InputBindings>
-        <KeyBinding Key="Enter" Command="{Binding CommandClose}" CommandParameter="{StaticResource TrueValue}" />
-        <KeyBinding Key="Escape" Command="{Binding CommandClose}" CommandParameter="{StaticResource FalseValue}" />
+        <KeyBinding Key="Enter" Command="{Binding CommandClosePositive}" />
+        <KeyBinding Key="Escape" Command="{Binding CommandCloseNegative}" />
     </Window.InputBindings>
 
     <Grid x:Name="LayoutRoot" Margin="2">
@@ -47,16 +40,14 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
             <Button 
                 Content="OK" 
-                Command="{Binding CommandClose}"
-                CommandParameter="{StaticResource TrueValue}"
+                Command="{Binding CommandClosePositive}"
                 Width="75" 
                 Height="23" 
                 HorizontalAlignment="Right" 
                 Margin="0,5,20,5" />
             <Button 
                 Content="Cancel" 
-                Command="{Binding CommandClose}"
-                CommandParameter="{StaticResource FalseValue}"
+                Command="{Binding CommandCloseNegative}"
                 Width="75" 
                 Height="23" 
                 HorizontalAlignment="Right" 

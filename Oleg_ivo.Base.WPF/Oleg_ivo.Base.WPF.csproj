@@ -129,6 +129,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\ISupportAmbivalentDialogClosing.cs" />
     <Compile Include="Extenders\ListBoxExtenders.cs" />
     <Compile Include="Converters\Patterns\ICase.cs" />
     <Compile Include="Converters\Patterns\ICompositeConverter.cs" />
