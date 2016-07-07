@@ -58,7 +58,7 @@
         </Reference>
       </ItemGroup>
     </When>
-    <When Condition=" '$(PackageFrameworkVersion)' == 'net45' ">
+    <When Condition=" '$(PackageFrameworkVersion)' == 'net45' or '$(PackageFrameworkVersion)' == 'net461' ">
       <ItemGroup>
         <Reference Include="ReactiveProperty">
           <HintPath>$(PackagesPath)\ReactiveProperty.2.1.8.1\lib\net45\ReactiveProperty.dll</HintPath>
@@ -80,9 +80,9 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>$(PackagesPath)\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=3.2.1.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(PackagesPath)\NLog.3.2.1\lib\$(PackageFrameworkVersion)\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>$(PackagesPath)\NLog.4.3.5\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -92,19 +92,19 @@
     <Reference Include="System.Net" />
     <Reference Include="System.ObjectModel" />
     <Reference Include="System.Reactive.Core">
-      <HintPath>$(PackagesPath)\Rx-Core.2.2.5\lib\$(PackageFrameworkVersion)\System.Reactive.Core.dll</HintPath>
+      <HintPath>$(PackagesPath)\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Interfaces">
-      <HintPath>$(PackagesPath)\Rx-Interfaces.2.2.5\lib\$(PackageFrameworkVersion)\System.Reactive.Interfaces.dll</HintPath>
+      <HintPath>$(PackagesPath)\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Linq">
-      <HintPath>$(PackagesPath)\Rx-Linq.2.2.5\lib\$(PackageFrameworkVersion)\System.Reactive.Linq.dll</HintPath>
+      <HintPath>$(PackagesPath)\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.PlatformServices">
-      <HintPath>$(PackagesPath)\Rx-PlatformServices.2.2.5\lib\$(PackageFrameworkVersion)\System.Reactive.PlatformServices.dll</HintPath>
+      <HintPath>$(PackagesPath)\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Windows.Threading">
-      <HintPath>$(PackagesPath)\Rx-XAML.2.2.5\lib\$(PackageFrameworkVersion)\System.Reactive.Windows.Threading.dll</HintPath>
+      <HintPath>$(PackagesPath)\Rx-XAML.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
